@@ -28,16 +28,24 @@ public class ProductListTest {
     }
 
     @Test
-    public void testFindProduct(){
+    public void testGetProductIndex(){
         bookStore.storeProduct( taleTwoCities1 );
         bookStore.storeProduct( taleTwoCities2 );
         Integer expected = 1;
-        assertEquals( expected, bookStore.findProduct( taleTwoCities2 ) );
+        assertEquals( expected, bookStore.getProductIndex( taleTwoCities2 ) );
     }
 
     @Test
-    public void testFindProduct__NotThere(){
-        assertNull( bookStore.findProduct( taleTwoCities1 ) );
+    public void testGetProductIndex__NotThere(){
+        Integer expected = -1;
+        assertEquals( expected, bookStore.getProductIndex( taleTwoCities1 ) );
+    }
+
+    @Test
+    public void testFindProduct__NotThereButIdentifierExistsAsKey(){
+        bookStore.storeProduct( taleTwoCities1 );
+        Integer expected = -1;
+        assertEquals( expected, bookStore.getProductIndex( taleTwoCities2 ) );
     }
 
     @Test
@@ -45,14 +53,14 @@ public class ProductListTest {
         bookStore.storeProduct( taleTwoCities1 );
         bookStore.storeProduct( taleTwoCities2 );
         Integer expected = 1;
-        assertEquals( expected, bookStore.findProduct( taleTwoCities2 ) );
+        assertEquals( expected, bookStore.getProductIndex( taleTwoCities2 ) );
         expected = 2;
         assertEquals( expected, bookStore.numberProductsWithIdentifier( taleTwoCities1.getIdentifier() ) );
         assertEquals( taleTwoCities1, bookStore.fetchProduct( taleTwoCities1 ) );
         expected = 1;
         assertEquals( expected, bookStore.numberProductsWithIdentifier( taleTwoCities2.getIdentifier() ) );
         expected = 0;
-        assertEquals( expected, bookStore.findProduct( taleTwoCities2 ) );
+        assertEquals( expected, bookStore.getProductIndex( taleTwoCities2 ) );
     }
 
     @Test

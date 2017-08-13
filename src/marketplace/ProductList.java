@@ -26,17 +26,16 @@ public class ProductList {
         }
     }
 
-    public Integer findProduct( Product product ){
+    public Integer getProductIndex( Product product ){
         if ( this.store.get( product.getIdentifier() ) != null ) {
             return this.store.get(product.getIdentifier()).indexOf(product);
-        } else {
-            return null;
         }
+        return -1;
     }
 
     public Product fetchProduct( Product product ){
         if ( this.store.get( product.getIdentifier() ) != null ) {
-            int index = this.findProduct(product);
+            int index = this.getProductIndex(product);
             if ( index != -1 ) {
                 Product fetchProduct = this.store.get(product.getIdentifier()).remove(index);
                 this.checkDeHash( product.getIdentifier() );
