@@ -13,7 +13,6 @@ public class Customer extends Transactee {
             int customerId,
             String name,
             Double balance,
-            ArrayList< Product > productList,
             HashMap< String, PaymentMethod > paymentMethods
     ){
         super( transacteeId, TransacteeType.CUSTOMER, name, balance );

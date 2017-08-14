@@ -8,12 +8,11 @@ import static org.junit.Assert.assertEquals;
 public class CustomerTest {
 
     private Customer del;
-    private ArrayList< Product > productList = new ArrayList<>();
     private HashMap< String, PaymentMethod > paymentMethods = new HashMap<>();
 
     @Before
     public void before(){
-        del = new Customer( 1, 1, "Del", 10.00, productList, paymentMethods );
+        del = new Customer( 1, 1, "Del", 10.00, paymentMethods );
     }
 
     @Test
