@@ -39,20 +39,20 @@ public class Customer extends Transactee {
 
     public void buyProduct( Product product, PaymentMethodType paymentMethodType, String pin ) {
         if ( product != null ) {
-            this.productList.storeProduct(product);
-            this.paymentMethods.get(paymentMethodType).use(product.getRetailPrice(), pin);
+            this.productList.storeProduct( product );
+            this.paymentMethods.get(paymentMethodType).use( product.getRetailPrice(), pin );
         }
     }
 
     public Boolean hasProductWithIdentifier( String productIdentifier ) {
-        return ( this.productList.numberProductsWithIdentifier( productIdentifier ) > 0 );
+        return this.productList.hasProductWithIdentifier( productIdentifier );
     }
 
     public Product returnProductWithIdentifier( String productIdentifier, PaymentMethodType paymentMethodType ) {
         if ( this.hasProductWithIdentifier( productIdentifier ) ) {
-            Product fromStore = this.productList.fetchProductWithIdentifier(productIdentifier);
-            this.paymentMethods.get(paymentMethodType).credit(fromStore.getRetailPrice());
-            return fromStore;
+            Product fromHouse = this.productList.fetchProductWithIdentifier( productIdentifier );
+            this.paymentMethods.get( paymentMethodType ).credit( fromHouse.getRetailPrice() );
+            return fromHouse;
         } else {
             return null;
         }

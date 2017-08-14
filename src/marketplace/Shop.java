@@ -27,23 +27,31 @@ public class Shop extends Transactee {
     }
 
     public Boolean checkStockWithIdentifier( String productIdentifier ) {
-        return ( this.productList.numberProductsWithIdentifier( productIdentifier ) > 0 );
+        return this.productList.hasProductWithIdentifier( productIdentifier );
     }
 
     public Product sellProductWithIdentifier( String productIdentifier ){
-        Product fromStore = this.productList.fetchProductWithIdentifier( productIdentifier );
-        this.sales += fromStore.getRetailPrice();
-        return fromStore;
+        if ( this.checkStockWithIdentifier( productIdentifier ) ) {
+            Product fromStore = this.productList.fetchProductWithIdentifier(productIdentifier);
+            this.sales += fromStore.getRetailPrice();
+            return fromStore;
+        } else {
+            return null;
+        }
     }
 
     public void restockProduct( Product product ) {
-        this.productList.storeProduct( product );
-        this.balance -= product.getWholesalePrice();
+        if ( product != null ) {
+            this.productList.storeProduct(product);
+            this.balance -= product.getWholesalePrice();
+        }
     }
 
     public void refundProduct( Product product ) {
-        this.productList.storeProduct( product );
-        this.refunds += product.getRetailPrice();
+        if ( product != null ) {
+            this.productList.storeProduct(product);
+            this.refunds += product.getRetailPrice();
+        }
     }
 
     public Double getTotal() {

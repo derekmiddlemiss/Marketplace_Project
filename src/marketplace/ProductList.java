@@ -37,6 +37,10 @@ public class ProductList {
 
     }
 
+    public Boolean hasProductWithIdentifier( String productIdentifier ){
+        return ( this.numberProductsWithIdentifier( productIdentifier ) > 0 );
+    }
+
     public Integer numberProductsWithIdentifier( String productIdentifier ){
         if ( this.store.get( productIdentifier ) != null ) {
             return this.store.get(productIdentifier).size();
