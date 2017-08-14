@@ -18,6 +18,25 @@ public class ProductList {
         this.store.get( product.getIdentifier() ).add( product );
     }
 
+    public Product inspectProduct( Product product ){
+        if ( this.store.get( product.getIdentifier() ) != null ) {
+            int index = this.getProductIndex( product );
+            return this.store.get( product.getIdentifier() ).get( index );
+        } else {
+            return null;
+        }
+    }
+
+    public Product inspectProductWithIdentifier( String productIdentifier ) {
+        Integer numberProducts = this.numberProductsWithIdentifier( productIdentifier );
+        if ( this.store.get( productIdentifier ) != null ) {
+            return this.store.get( productIdentifier ).get( numberProducts - 1);
+        } else {
+            return null;
+        }
+
+    }
+
     public Integer numberProductsWithIdentifier( String productIdentifier ){
         if ( this.store.get( productIdentifier ) != null ) {
             return this.store.get(productIdentifier).size();
@@ -35,9 +54,9 @@ public class ProductList {
 
     public Product fetchProduct( Product product ){
         if ( this.store.get( product.getIdentifier() ) != null ) {
-            int index = this.getProductIndex(product);
+            int index = this.getProductIndex( product );
             if ( index != -1 ) {
-                Product fetchProduct = this.store.get(product.getIdentifier()).remove(index);
+                Product fetchProduct = this.store.get( product.getIdentifier() ).remove(index);
                 this.checkDeHash( product.getIdentifier() );
                 return fetchProduct;
             } else {

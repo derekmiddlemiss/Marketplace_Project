@@ -3,12 +3,14 @@ package marketplace;
 public class Product {
 
     private String identifier;
-    private Double price;
+    private Double wholesalePrice;
+    private Double retailPrice;
     private String description;
 
-    public Product( String identifier, Double price, String description ){
+    public Product( String identifier, Double wholesalePrice, Double retailPrice, String description ){
         this.identifier = identifier;
-        this.price = price;
+        this.wholesalePrice = wholesalePrice;
+        this.retailPrice = retailPrice;
         this.description = description;
     }
 
@@ -16,8 +18,12 @@ public class Product {
         return this.identifier;
     }
 
-    public Double getPrice(){
-        return this.price;
+    public Double getWholesalePrice(){
+        return this.wholesalePrice;
+    }
+
+    public Double getRetailPrice(){
+        return this.retailPrice;
     }
 
     public String getDescription(){

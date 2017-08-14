@@ -41,7 +41,22 @@ public class PaymentMethod {
         return ( this.pinHash == getHashCode( inputPin ) );
     }
 
-    protected PaymentMethodType getType() {
+    public Double getBalance( String pin ) {
+        if ( checkPin( pin ) ) {
+            return this.balance;
+        } else {
+            return null;
+        }
+    }
+
+    public Boolean authorise( Double amount, String pin ) {
+        if (checkPin( pin ) ) {
+            return !this.checkOverLimit( amount );
+        }
+        return null;
+    }
+
+    public PaymentMethodType getType() {
         return this.type;
     }
 

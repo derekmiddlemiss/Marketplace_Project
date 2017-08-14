@@ -14,9 +14,9 @@ public class ProductListTest {
     @Before
     public void before(){
         taleTwoCities1 = new Product( "TaleTwoCities11492", 10.99,
-                "Unabridged copy of A Tale of Two Cities by Charles Dickens");
+                12.99,"Unabridged copy of A Tale of Two Cities by Charles Dickens");
         taleTwoCities2 = new Product( "TaleTwoCities11492", 10.99,
-                "Unabridged copy of A Tale of Two Cities by Charles Dickens");
+                12.99,"Unabridged copy of A Tale of Two Cities by Charles Dickens");
         bookStore = new ProductList();
     }
 
@@ -86,6 +86,32 @@ public class ProductListTest {
     @Test
     public void testFetchProductWithIdentifier__None(){
         assertNull( bookStore.fetchProductWithIdentifier( taleTwoCities1.getIdentifier() ) );
+    }
+
+    @Test
+    public void testInspectProduct(){
+        bookStore.storeProduct( taleTwoCities1 );
+        assertEquals( taleTwoCities1, bookStore.inspectProduct( taleTwoCities1 ) );
+        Integer expected = 1;
+        assertEquals( expected, bookStore.numberProductsWithIdentifier( taleTwoCities1.getIdentifier() ) );
+    }
+
+    @Test
+    public void testInspectProductWithIdentifier(){
+        bookStore.storeProduct( taleTwoCities1 );
+        assertEquals( taleTwoCities1, bookStore.inspectProductWithIdentifier( taleTwoCities1.getIdentifier() ) );
+        Integer expected = 1;
+        assertEquals( expected, bookStore.numberProductsWithIdentifier( taleTwoCities1.getIdentifier() ) );
+    }
+
+    @Test
+    public void testInspectProduct__NotThere(){
+        assertNull( bookStore.inspectProduct( taleTwoCities1 ) );
+    }
+
+    @Test
+    public void testInspectProductWithIdentifier__NotThere(){
+        assertNull( bookStore.inspectProductWithIdentifier( taleTwoCities1.getIdentifier() ) );
     }
 
 }

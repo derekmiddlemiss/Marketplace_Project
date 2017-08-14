@@ -5,17 +5,19 @@ import java.util.HashMap;
 
 public abstract class Transactee {
 
-    protected int transacteeId;
+    protected int transacteeID;
     protected TransacteeType type;
     protected String name;
-    protected Double balance;
     protected ProductList productList;
 
-    protected Transactee( int transacteeId, TransacteeType type, String name, Double balance ){
-        this.transacteeId = transacteeId;
+    protected Transactee(
+            int transacteeID,
+            TransacteeType type,
+            String name
+    ){
+        this.transacteeID = transacteeID;
         this.type = type;
         this.name = name;
-        this.balance = balance;
         this.productList = new ProductList();
     }
 
